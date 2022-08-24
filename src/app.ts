@@ -8,15 +8,12 @@ const port  = config.get<number>('port')
 
 const app = express();
 
-app.get('/',  (req, res)=>{
-    console.log("first")
-})
+app.use(express.json());
 
 app.listen(port, async ()=> {
     logger.info(`App running on port ${port}`)
 
     await connect();
-
-    await routes(app);
+    routes(app);
 
 })
